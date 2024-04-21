@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_null_comparison
 
 import 'package:diary_app/api/diary_api.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../model.dart';
 import 'home.dart';
@@ -32,7 +33,8 @@ class _UpdateEntryScreenState extends State<UpdateEntryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Update Diary Entry"),
+        // backgroundColor: const Color(0xFF8fa247),
+        title: const Text("Edit Entry"),
         actions: [
           OutlinedButton(
             onPressed: () async {
@@ -59,8 +61,11 @@ class _UpdateEntryScreenState extends State<UpdateEntryScreen> {
             },
             child: const Text(
               "Save",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color:Color(0xFF8fa247)),
             ),
+          ),
+          const SizedBox(
+            width: 10,
           ),
           OutlinedButton(
             onPressed: () {
@@ -70,26 +75,73 @@ class _UpdateEntryScreenState extends State<UpdateEntryScreen> {
             },
             child: const Text(
               "Exit",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color:Color(0xFF8fa247)),
             ),
-          )
+          ),
+          const SizedBox(
+            width: 5,
+          ),
         ],
       ),
-      body: Column(children: [
-        const Text("Title"),
-        TextField(
-          maxLines: 1,
-          controller: titleController,
-          decoration: const InputDecoration(border: OutlineInputBorder()),
-        ),
-        const Text("Your Thoughts"),
-        TextField(
-          controller: bodyController,
-          maxLines: 50,
-          minLines: 10,
-          decoration: const InputDecoration(border: OutlineInputBorder()),
-        ),
-      ]),
+      body: Container(
+        color: const Color.fromARGB(97, 168, 187, 100),
+        child: 
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: 
+              Column(children: [
+                const SizedBox(height: 20,),
+                const Row(
+                  children: [
+                    Text("Entry Title  ", 
+                      style: TextStyle(color:  Color(0xFF8fa247)),),
+                    Icon(Icons.edit,color:  Color(0xFF8fa247),size: 18,),
+                    SizedBox(width: 45,)
+                  ],
+                ),
+
+                TextField(
+                  maxLines: 1,
+                  controller: titleController,
+                  style: const TextStyle(
+                    fontSize: 25,
+              
+                  ),
+                  decoration: 
+                  const InputDecoration(
+                    // border: UnderlineInputBorder(),
+                    floatingLabelAlignment: FloatingLabelAlignment.start,
+                    // icon: Icon(Icons.edit, color: Colors.white,size: 10,)
+              
+                    ),
+                ),
+
+                const SizedBox(height: 25,),
+                const Row(
+                  children: [
+                    Text("Your Thoughts  ", 
+                      style: TextStyle(color: Color(0xFF8fa247)),),
+                    Icon(Icons.edit,color: Color(0xFF8fa247),size: 18,),
+                    SizedBox(width: 45,)
+                  ],
+                ),
+                const SizedBox(height: 10,),
+                TextField(
+                  controller: bodyController,
+                  maxLines: 50,
+                  minLines: 10,
+                  style: const TextStyle(color: Colors.black87),
+                  decoration: 
+                  const InputDecoration(
+                    border: OutlineInputBorder(),
+                    
+                    ),
+                ),
+              ]),
+            
+          ),
+        
+      ),
     );
   }
 }
